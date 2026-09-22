@@ -1,47 +1,56 @@
 using System;
 using System.Reflection.Metadata;
+using System.Runtime.ConstrainedExecution;
 using System.Security.Cryptography.X509Certificates;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello World! This is the Exercise2 Project.");
-        Console.Write("Please enter the the test score: ");
-        String scorePoint = Console.ReadLine();
+        // This is activity 2 which is for if statement
 
-        int scorePointNumber = int.Parse(scorePoint);
+        // First ask the user exam point and store as a int
+        Console.Write("Please enter your grade percentage : ");
+        string userGradeStr = Console.ReadLine();
+        int userGrade = int.Parse(userGradeStr);
 
+        // Create the new string variable to store a grade letter
         string letter = "";
 
-        if (scorePointNumber >= 90)
+        // Stretch Challenge number 1
+        // Create a new string variable to store the + or - sign
+
+        string sign = "";
+
+        // Use if statement to check the user grade and return the grade which they got
+        if (userGrade >= 90)
         {
             letter = "A";
         }
-        else if (scorePointNumber >= 80)
+        else if (userGrade >= 80)
         {
             letter = "B";
         }
-        else if (scorePointNumber >= 70)
+        else if (userGrade >= 70)
         {
             letter = "C";
+
         }
-        else if (scorePointNumber >= 60)
+        else if (userGrade >= 60)
         {
             letter = "D";
         }
-        else
+        else if (userGrade < 60)
         {
             letter = "F";
         }
 
-        string sign = "";
-        int lastDigit = scorePointNumber % 10;
-        if (lastDigit >= 7)
+        // Check the user got + sign or - sign
+        if (userGrade % 10 >= 7)
         {
             sign = "+";
         }
-        else if ((lastDigit > 3) && (lastDigit < 7))
+        else if (userGrade % 10 < 3)
         {
             sign = "-";
         }
@@ -50,25 +59,33 @@ class Program
             sign = "";
         }
 
-        if ((letter == "A") && (sign == "+"))
+        // Stretch challenge 2
+        // check the user got A or not then if define the sign
+
+        if (letter == "A" && userGrade % 10 < 3)
         {
-            sign = "";
+            sign = "-";
         }
         else if (letter == "F")
         {
             sign = "";
         }
-        
-
-
-        Console.Write($"Your grade is {letter}{sign}. ");
-        if (scorePointNumber >= 70)
+        else if (letter == "A")
         {
-            Console.WriteLine("You passed the test, Congratulation!");
+            sign = "";
         }
-        else if (scorePointNumber <= 69)
+
+        // Check the user got at least 70 percentage, if user get 70 or over 70 
+        // display the congratulate message and if not display encourage message
+        if (userGrade >= 70)
         {
-            Console.WriteLine("Sorry, you did not pass the test. Do not give up until you pass!");
+            Console.WriteLine($"Your grade is {sign}{letter}.");
+            Console.WriteLine("WOW! You made it! Congratulation!");
+        }
+        else
+        {
+            Console.WriteLine($"Your grade is {sign}{letter}.");
+            Console.WriteLine("Sorry you did not make it. But DO NOT give up!");
         }
     }
 

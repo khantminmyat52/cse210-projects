@@ -5,37 +5,59 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello World! This is the Exercise3 Project.");
-        string replay = "yes";
+        // This program is activity 3 which we will use while loop
 
-        while (replay == "yes")
+        // Stretch Challenge 
+
+        // 1. Create a new variable to track how many guess user take
+        int guessCount = 0;
+
+        // stretch Challenge 2
+        // Create another loop until user do not want to play
+        string playAgain = "yes";
+
+        // This while loop will loop until user enter no 
+        while (playAgain == "yes")
         {
+             // Get the magic number as a random number
             Random randomGenerator = new Random();
-            int numberRandom = randomGenerator.Next(1, 100);
-            int guessCount = 0;
+            int magicNum = randomGenerator.Next(1, 100);
 
-            int guessNumber = 0;
-            while (numberRandom != guessNumber)
+            // Create a new variable for user guess number and store in it
+            int userGuess = -1;
+            // Check the user guess number is correct or not 
+            // if user guess is wrong this loop will keep looping until user guess it right
+            while (magicNum != userGuess)
             {
-                Console.Write("Enter the guess number : ");
-                string userGuess = Console.ReadLine();
-                int userGuessNumber = int.Parse(userGuess);
-                guessNumber = userGuessNumber;
+                // Get the user input guess number and store is as integer to userGuess variable
+                Console.Write("Enter the guess number (1 to 100): ");
+                string guessLetter = Console.ReadLine();
+                userGuess = int.Parse(guessLetter);
+
+                // Plus 1 to guessCount every time user take guess
                 guessCount += 1;
 
-                if (guessNumber > numberRandom)
+                // Start checking the user guess is correct or wrong. Then display a hint
+                if (userGuess > magicNum)
                 {
-                    Console.WriteLine("Lower!");
+                    Console.WriteLine("Lower");
                 }
-                else if (guessNumber < numberRandom)
+                else if (userGuess < magicNum)
                 {
-                    Console.WriteLine("Higher!");
+                    Console.WriteLine("Higher");
+                }
+                else
+                {
+                    Console.WriteLine($"Wow! You guessed it! The magic number is {magicNum}");
                 }
             }
-            Console.WriteLine($"You guessed the number! You took {guessCount} guess!");
-            Console.Write("Do you want to play again? ");
-            replay = Console.ReadLine();
+            Console.WriteLine($"You took {guessCount} to guess the number correctly.");
+            Console.WriteLine();
+
+            // ask the user for playing again or not
+            Console.Write("Would you like to play again(yes or no) : ");
+            playAgain = Console.ReadLine();
         }
-        Console.WriteLine("Thank you for your time! See you soon!");
+        Console.WriteLine("Thank you for your time. Have a good day! ");
     }
 }
